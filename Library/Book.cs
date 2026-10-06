@@ -2,26 +2,48 @@
 {
     class Book
     {
-        private string Title;  //Private field
-        private string Author;
-        private string ISBN;
+        private string title;  //Private field
+        private string author;
+        private string isbn;
 
         //Title property allows access
         //to the title private field
         public string Title
         {
-            get { return Title; } //Get method
-            set { Title = value; } //Set method
+            get { return title; } //Get method
+            set { title = value; } //Set method
         }
         public string Author
         {
-            get { return Author; }
-            set { Author = value; }
+            get { return author; }
+            set
+            {
+                //Checks if any charatcer in the incoming string is a digit
+                if (!value.Any(char.IsDigit))
+                {
+                    author = value;
+                }
+                else
+                {
+                    Console.WriteLine("Error: Author name cannot contain numbers.");
+                }
+            }
         }
-        oublic string ISBN
+        public string ISBN
         {
-            get { return ISBN; }
-            set { ISBN = value; }
+            get { return isbn; }
+            set
+            {
+                //Checks that the incoming stirng is not blank
+                if (value != "")
+                {
+                    isbn = value;
+                }
+                else
+                {
+                    Console.WriteLine("Error: ISBN cannot be blank.");
+                }
+            }
         }
 
         //Constructor to add a new book
