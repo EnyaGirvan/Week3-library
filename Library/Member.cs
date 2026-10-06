@@ -15,12 +15,30 @@ namespace library
         public int MemberId
         {
             get { return memberId; }
-            set { memberId = value; } //Private setter makes it read-only
+            private set
+            {
+                memberId = value;
+            }
+            else 
+            {
+                Console.WriteLine("Error: Member ID must be greater than 0.");
+            }
         }
         public string Name
         {
             get { return name; } // get method
-            set { name = value; } // set method
+            set
+            {
+                // Ensure name does not contain any numbers
+                if (!value.Any(char.IsDigit) && value != "")
+                {
+                    name = value; // set method
+                }
+                else
+                {
+                    Console.WriteLine("Error: Name cannot be blank or contain numbers.");
+                }
+            }
         }
         public string Address
         {
